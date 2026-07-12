@@ -37,4 +37,3 @@ print("Before swapping x=",x,"\nBefore swapping y=",y)
 x,y=y,x
 print("After swapping x=",x,"\nAfter swapping y=",y)
 
-
