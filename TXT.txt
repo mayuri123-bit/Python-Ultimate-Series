@@ -1,0 +1,538 @@
+# Module 5 – Functions (Python Notes)
+
+A **function** is a block of reusable code that performs a specific task. Functions help reduce code repetition and improve readability.
+
+---
+
+# 1. Function Definition
+
+A function is created using the `def` keyword.
+
+## Syntax
+
+```python
+def function_name():
+    # Function body
+```
+
+### Example
+
+```python
+def greet():
+    print("Hello, Welcome to Python!")
+
+greet()
+```
+
+**Output**
+
+```text
+Hello, Welcome to Python!
+```
+
+---
+
+# 2. Parameters
+
+Parameters are values passed to a function.
+
+### Example
+
+```python
+def greet(name):
+    print("Hello", name)
+
+greet("Mayuri")
+greet("Rahul")
+```
+
+**Output**
+
+```text
+Hello Mayuri
+Hello Rahul
+```
+
+---
+
+### Multiple Parameters
+
+```python
+def add(a, b):
+    print(a + b)
+
+add(10, 20)
+```
+
+**Output**
+
+```text
+30
+```
+
+---
+
+# 3. Return Statement
+
+The `return` statement sends a value back to the caller.
+
+### Example
+
+```python
+def add(a, b):
+    return a + b
+
+result = add(10, 20)
+print(result)
+```
+
+**Output**
+
+```text
+30
+```
+
+---
+
+### Difference Between `print()` and `return`
+
+| `print()`                  | `return`                                |
+| -------------------------- | --------------------------------------- |
+| Displays output            | Sends value back                        |
+| Cannot reuse output easily | Returned value can be stored and reused |
+
+Example:
+
+```python
+def square(n):
+    return n * n
+
+value = square(5)
+print(value)
+```
+
+**Output**
+
+```text
+25
+```
+
+---
+
+# 4. Default Arguments
+
+A default argument has a predefined value.
+
+### Syntax
+
+```python
+def function(parameter=value):
+```
+
+### Example
+
+```python
+def greet(name="Guest"):
+    print("Hello", name)
+
+greet()
+greet("Mayuri")
+```
+
+**Output**
+
+```text
+Hello Guest
+Hello Mayuri
+```
+
+---
+
+# 5. Keyword Arguments
+
+Arguments are passed using parameter names.
+
+### Example
+
+```python
+def student(name, age):
+    print("Name:", name)
+    print("Age:", age)
+
+student(age=20, name="Mayuri")
+```
+
+**Output**
+
+```text
+Name: Mayuri
+Age: 20
+```
+
+---
+
+# 6. `*args`
+
+`*args` allows a function to accept multiple positional arguments.
+
+### Example
+
+```python
+def total(*numbers):
+    print(sum(numbers))
+
+total(10, 20)
+total(10, 20, 30, 40)
+```
+
+**Output**
+
+```text
+30
+100
+```
+
+---
+
+### Another Example
+
+```python
+def display(*names):
+    for name in names:
+        print(name)
+
+display("Mayuri", "Rahul", "Anjali")
+```
+
+**Output**
+
+```text
+Mayuri
+Rahul
+Anjali
+```
+
+---
+
+# 7. `**kwargs`
+
+`**kwargs` allows a function to accept multiple keyword arguments.
+
+### Example
+
+```python
+def student(**details):
+    print(details)
+
+student(name="Mayuri", age=20, city="Nanded")
+```
+
+**Output**
+
+```text
+{'name': 'Mayuri', 'age': 20, 'city': 'Nanded'}
+```
+
+---
+
+### Loop Through `**kwargs`
+
+```python
+def student(**details):
+    for key, value in details.items():
+        print(key, ":", value)
+
+student(name="Mayuri", age=20, course="BSc")
+```
+
+**Output**
+
+```text
+name : Mayuri
+age : 20
+course : BSc
+```
+
+---
+
+# 8. Lambda Functions
+
+A lambda function is a small anonymous function.
+
+### Syntax
+
+```python
+lambda arguments: expression
+```
+
+### Example
+
+```python
+square = lambda x: x * x
+
+
+print(square(5))
+```
+
+**Output**
+
+```text
+25
+```
+
+---
+
+### Lambda with Multiple Arguments
+
+```python
+add = lambda a, b: a + b
+
+print(add(10, 20))
+```
+
+**Output**
+
+```text
+30
+```
+
+---
+
+### Lambda with `map()`
+
+```python
+numbers = [1, 2, 3, 4]
+
+square = list(map(lambda x: x*x, numbers))
+
+print(square)
+```
+
+**Output**
+
+```text
+[1, 4, 9, 16]
+```
+
+---
+
+# 9. Recursion
+
+A recursive function calls itself.
+
+### Example
+
+```python
+def countdown(n):
+    if n == 0:
+        print("Done")
+    else:
+        print(n)
+        countdown(n-1)
+
+countdown(5)
+```
+
+**Output**
+
+```text
+5
+4
+3
+2
+1
+Done
+```
+
+---
+
+### Factorial Using Recursion
+
+```python
+def factorial(n):
+    if n == 1:
+        return 1
+    return n * factorial(n-1)
+
+print(factorial(5))
+```
+
+**Output**
+
+```text
+120
+```
+
+---
+
+# 10. Scope
+
+Scope determines where a variable can be accessed.
+
+There are two main types:
+
+* Local Scope
+* Global Scope
+
+---
+
+# 11. Local Variables
+
+A local variable is created inside a function and can only be used inside that function.
+
+### Example
+
+```python
+def demo():
+    x = 10
+    print(x)
+
+demo()
+```
+
+**Output**
+
+```text
+10
+```
+
+This will cause an error:
+
+```python
+def demo():
+    x = 10
+
+demo()
+
+print(x)
+```
+
+**Output**
+
+```text
+NameError: name 'x' is not defined
+```
+
+---
+
+# 12. Global Variables
+
+A global variable is declared outside a function and can be accessed anywhere.
+
+### Example
+
+```python
+x = 100
+
+def demo():
+    print(x)
+
+demo()
+print(x)
+```
+
+**Output**
+
+```text
+100
+100
+```
+
+---
+
+### Using the `global` Keyword
+
+```python
+count = 0
+
+def increment():
+    global count
+    count += 1
+
+increment()
+increment()
+
+print(count)
+```
+
+**Output**
+
+```text
+2
+```
+
+---
+
+# Function Types
+
+| Function Type           | Description                            |
+| ----------------------- | -------------------------------------- |
+| No arguments, no return | Takes nothing and returns nothing      |
+| Arguments, no return    | Takes input but doesn't return a value |
+| No arguments, return    | Returns a value without taking input   |
+| Arguments and return    | Takes input and returns a value        |
+
+### Example
+
+```python
+def multiply(a, b):
+    return a * b
+
+print(multiply(5, 4))
+```
+
+**Output**
+
+```text
+20
+```
+
+---
+
+# Advantages of Functions
+
+* Code Reusability
+* Reduces Code Duplication
+* Easier Debugging
+* Improves Readability
+* Simplifies Maintenance
+* Makes Programs Modular
+
+---
+
+# Important Interview/Exam Questions
+
+1. What is a function in Python?
+2. Explain function definition with syntax.
+3. What is the difference between parameters and arguments?
+4. Explain the `return` statement with an example.
+5. What are default arguments?
+6. Explain keyword arguments with an example.
+7. What is the difference between `*args` and `**kwargs`?
+8. What is a lambda function? Give an example.
+9. Explain recursion with a factorial example.
+10. What is variable scope?
+11. Differentiate between global and local variables.
+12. What is the purpose of the `global` keyword?
+
+---
+
+# Quick Comparison Table
+
+| Concept          | Purpose                                     | Example          |
+| ---------------- | ------------------------------------------- | ---------------- |
+| `def`            | Define a function                           | `def greet():`   |
+| Parameter        | Input variable in function                  | `def add(a, b):` |
+| `return`         | Returns a value                             | `return a+b`     |
+| Default Argument | Uses default value if no argument is passed | `name="Guest"`   |
+| Keyword Argument | Pass values by parameter name               | `age=20`         |
+| `*args`          | Multiple positional arguments               | `*numbers`       |
+| `**kwargs`       | Multiple keyword arguments                  | `**details`      |
+| Lambda           | Anonymous function                          | `lambda x: x*x`  |
+| Recursion        | Function calls itself                       | `factorial(n)`   |
+| Local Variable   | Exists inside function                      | `x=10`           |
+| Global Variable  | Exists outside function                     | `global x`       |
+
+These notes cover all the topics in **Module 5 – Functions** in an exam-oriented format with definitions, syntax, examples, outputs, and important interview questions.
+
+
